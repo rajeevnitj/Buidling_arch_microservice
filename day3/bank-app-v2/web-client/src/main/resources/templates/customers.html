@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customers - Banking Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1>Customer Management</h1>
+            <div>
+                <span class="me-3">Welcome, <span th:text="${currentUser.customer.firstName}"></span>!</span>
+                <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+            </div>
+        </div>
+        <nav class="mb-3">
+            <a href="/" class="btn btn-secondary">Home</a>
+            <a href="/accounts" class="btn btn-secondary">Accounts</a>
+            <a href="/transactions" class="btn btn-secondary">Transactions</a>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Add New Customer</h3>
+                <form method="post" action="/customers">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" name="firstName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" name="lastName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" name="address"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Customer</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Existing Customers</h3>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                <div th:if="${customers == null}" class="alert alert-warning">No customer data available</div>
+                <div th:if="${customers}" class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="customer : ${customers}">
+                                <td th:text="${customer.id}"></td>
+                                <td th:text="${customer.firstName + ' ' + customer.lastName}"></td>
+                                <td th:text="${customer.email}"></td>
+                                <td th:text="${customer.phone}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
