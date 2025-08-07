@@ -1,0 +1,6 @@
+com\banking\swagger\SwaggerConfig.class
+com\banking\swagger\SwaggerAggregatorApplication.class
+com\banking\swagger\config\CorsConfig.class
+com\banking\swagger\controller\SwaggerController.class
+com\banking\swagger\config\RestTemplateConfig.class
+com\banking\swagger\config\SecurityConfig.class

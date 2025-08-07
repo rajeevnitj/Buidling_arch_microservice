@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: swagger-aggregator
+  main:
+    web-application-type: servlet
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Customer Service
+        url: /v3/api-docs/customer
+      - name: Account Service
+        url: /v3/api-docs/account
+      - name: Transaction Service
+        url: /v3/api-docs/transaction
+  api-docs:
+    enabled: true
